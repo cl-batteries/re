@@ -11,4 +11,4 @@
   :description "Lua-style string pattern matching."
   :serial t
   :components ((:file "re"))
-  :depends-on ("parse"))
+  :depends-on ("cl-batteries/parse"))
