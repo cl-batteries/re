@@ -3,7 +3,7 @@
 
 (in-package :cl-batteries/re-asd)
 
-(defsystem :re
+(defsystem :cl-batteries/re
   :name "cl-batteries/re"
   :version "1.0"
   :author "Jeffrey Massung"
