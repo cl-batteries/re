@@ -17,8 +17,8 @@
 ;;;; under the License.
 ;;;;
 
-(defpackage :cl-batteries/re
-  (:use :cl :parse)
+(defpackage :boost-re
+  (:use :cl :boost-parse)
   (:export
    #:with-re
    #:with-re-match
@@ -36,7 +36,7 @@
    #:match-pos-start
    #:match-pos-end))
 
-(in-package :cl-batteries/re)
+(in-package :boost-re)
 
 ;;; ----------------------------------------------------
 
