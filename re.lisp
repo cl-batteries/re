@@ -116,7 +116,7 @@
 
 (define-parser re-parser
   "A regular expression is one or more expressions."
-  (.let (ex (.many 're-expr))
+  (.let (ex (.many1 're-expr))
     (.opt ex (.let (otherwise (.do (.is :or) 're-parser))
                (.ret `((:or ,ex ,otherwise)))))))
 
@@ -124,17 +124,16 @@
 
 (define-parser re-expr
   "A single character, set, or loop of expressions."
-  (.let (e (.or 're-boundary
-                're-bounds
-                're-char
-                're-set
-                're-group))
-
-    ;; check to see if there is a following iteration token
-    (.opt e (.or (.do (.is :*) (.ret (list :* e)))
-                 (.do (.is :-) (.ret (list :- e)))
-                 (.do (.is :+) (.ret (list :+ e)))
-                 (.do (.is :?) (.ret (list :? e)))))))
+  (.or 're-boundary (.let (e (.or 're-bounds
+                                  're-char
+                                  're-set
+                                  're-group))
+ 
+                      ;; check for iteration
+                      (.opt e (.or (.do (.is :*) (.ret (list :* e)))
+                                   (.do (.is :-) (.ret (list :- e)))
+                                   (.do (.is :+) (.ret (list :+ e)))
+                                   (.do (.is :?) (.ret (list :? e))))))))
 
 ;;; ----------------------------------------------------
 

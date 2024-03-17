@@ -127,7 +127,7 @@ If the result of `match-expr` is `nil`, then `no-match` is returned and `body` i
 While in the body of the macro, `$$` will be bound to the `match-string` and the groups will be bound to `$1`, `$2`, ..., `$9`. Any groups beyond the first 9 are bound in a list to `$_`. The symbol `$*` is bound to all the match groups.
 
     CL-USER > (with-re-match (m (match-re "(%a+)(%s+)(%d+)" "abc 123"))
-                (string-append $3 $2 $1)))
+                (concatenate 'string $3 $2 $1)))
     "123 abc"
 
     CL-USER > (flet ((initial (m)
